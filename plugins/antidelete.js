@@ -7,7 +7,7 @@ const { getAnti, setAnti, initializeAntiDeleteSettings } = require('../data/anti
 initializeAntiDeleteSettings();
 
 cmd({
-    pattern: "antidelete",
+    pattern: "antidelete2",
     alias: ['antidel', 'ad'],
     desc: "Sets up the Antidelete",
     category: "misc",
