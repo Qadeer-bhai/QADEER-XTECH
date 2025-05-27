@@ -13,7 +13,7 @@ cmd({
     filename: __filename
 }, async (conn, mek, m, { from, reply }) => {
     try {
-        const botVer = config.BOT_VERSION || "v1.0.0";
+        const botVer = config.BOT_VERSION || "v3.8.0";
         const platform = os.platform();
         const up = runtime(process.uptime());
         const time = moment.tz('Asia/Karachi').format("HH:mm:ss");
