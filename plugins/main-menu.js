@@ -4,19 +4,6 @@ const moment = require('moment-timezone')
 const { cmd, commands } = require('../command')  
 const { runtime } = require('../lib/functions')  
   
-// Define icons for categories  
-const categoryIcons = {  
-    MENU: "📜",  
-    ADMIN: "🛠️",  
-    FUN: "🎉",  
-    UTILITIES: "⚙️",  
-    GAMES: "🎮",  
-    DOWNLOAD: "⬇️",  
-    OWNER: "👑",  
-    MISC: "🔰",  
-    UNCATEGORIZED: "❓"  
-};  
-  
 cmd({  
     pattern: "menu",  
     alias: ["allmenu", "fullmenu"],  
@@ -27,17 +14,6 @@ cmd({
 },  
 async (conn, mek, m, { from, reply }) => {  
     try {  
-        // Group commands by category  
-        let grouped = {};  
-        for (let cmd of commands) {  
-            const cat = (cmd.category || "UNCATEGORIZED").toUpperCase();  
-            if (!grouped[cat]) grouped[cat] = [];  
-            grouped[cat].push(cmd);  
-        }  
-  
-        // Sort categories alphabetically  
-        const sortedCategories = Object.keys(grouped).sort();  
-  
         // Technical info  
         const botVer = config.BOT_VERSION || "v1.0.0";  
         const platform = os.platform();  
@@ -46,35 +22,37 @@ async (conn, mek, m, { from, reply }) => {
         const time = moment.tz('Asia/Karachi').format("HH:mm:ss");  
         const date = moment.tz('Asia/Karachi').format("DD MMM YYYY");  
   
-        // Header  
-        let text = `╔════════════════════════════╗\n`;  
-        text += `║    *${config.BOT_NAME} - Command Menu*    ║\n`;  
-        text += `╠════════════════════════════╣\n`;  
-        text += `║ 👑 Owner: *${config.OWNER_NAME}*\n`;  
-        text += `║ ⏳ Uptime: *${up}*\n`;  
-        text += `║ 📅 Date: *${date}* | 🕒 Time: *${time}*\n`;  
-        text += `║ 💻 Platform: *${platform}*\n`;  
-        text += `║ 🧩 Bot Version: *${botVer}*\n`;  
-        text += `║ 📚 Total Commands: *${totalCmds}*\n`;  
-        text += `╚════════════════════════════╝\n\n`;  
+        // Header - hacker style ASCII art  
+        let text = "";  
+        text += "╔════════════════════════════════════════╗\n";  
+        text += "║  ╔═╗╔═╗╦  ╦╔═╗╔═╗╔═╗╔═╗╦═╗╔═╗╔╦╗ ║\n";  
+        text += "║  ╚═╗║╣ ╚╗╔╝║  ╠═╣║  ╠═╝╠╦╝╠═╣ ║  ║\n";  
+        text += "║  ╚═╝╚═╝ ╚╝ ╚═╝╩ ╩╚═╝╩  ╩╚═╩ ╩ ╩  ║\n";  
+        text += "║                                        ║\n";  
+        text += `║ OWNER: ${config.OWNER_NAME.padEnd(28)} ║\n`;  
+        text += `║ BOT VERSION: ${botVer.padEnd(21)} ║\n`;  
+        text += `║ PLATFORM: ${platform.padEnd(25)} ║\n`;  
+        text += `║ UPTIME: ${up.padEnd(27)} ║\n`;  
+        text += `║ DATE: ${date.padEnd(29)} ║\n`;  
+        text += `║ TIME: ${time.padEnd(29)} ║\n`;  
+        text += `║ TOTAL COMMANDS: ${totalCmds.toString().padEnd(22)} ║\n`;  
+        text += "╚════════════════════════════════════════╝\n\n";  
   
-        // Category-wise commands with icons and command counts  
-        for (let category of sortedCategories) {  
-            const icon = categoryIcons[category] || "❓";  
-            text += `╭─〔 ${icon} ${category} - (${grouped[category].length}) 〕─╮\n`;  
-            text += grouped[category]  
-                .map(cmd => `│ • *${config.PREFIX}${cmd.pattern}*${cmd.alias ? ` (Aliases: ${cmd.alias.join(", ")})` : ""}`)  
-                .join('\n');  
-            text += `\n╰────────────────────────────╯\n\n`;  
-        }  
+        // Commands list (no categories)  
+        text += "┌───[ COMMANDS LIST ]─────────────────────┐\n";  
+        commands.forEach(cmd => {  
+            let aliasStr = cmd.alias && cmd.alias.length > 0 ? ` (aliases: ${cmd.alias.join(", ")})` : "";  
+            text += `│ > ${config.PREFIX}${cmd.pattern}${aliasStr}\n`;  
+        });  
+        text += "└─────────────────────────────────────────┘\n\n";  
   
         // Footer  
-        text += `╔════════════════════════════╗\n`;  
-        text += `║ Need Help? Try: *${config.PREFIX}help <command>*\n`;  
-        text += `║ ——— *Qadeer-XTech* ———\n`;  
-        text += `╚════════════════════════════╝`;  
+        text += "╔═[ Need help? ]═════════════════════════╗\n";  
+        text += `║ Try: ${config.PREFIX}help <command>                  ║\n`;  
+        text += "║ ———— [ Qadeer-XTech Hacker Bot ] ———— ║\n";  
+        text += "╚════════════════════════════════════════╝\n";  
   
-        // Send image with caption  
+        // Send message with image and caption  
         await conn.sendMessage(from, {  
             image: { url: config.MENU_IMAGE_URL || 'https://qu.ax/bBkkd.jpg' },  
             caption: text  
