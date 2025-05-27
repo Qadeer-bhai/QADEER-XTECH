@@ -13,45 +13,44 @@ cmd({
     filename: __filename
 }, async (conn, mek, m, { from, reply }) => {
     try {
-        // Bot info
         const botVer = config.BOT_VERSION || "v1.0.0";
         const platform = os.platform();
         const up = runtime(process.uptime());
         const time = moment.tz('Asia/Karachi').format("HH:mm:ss");
         const date = moment.tz('Asia/Karachi').format("DD MMM YYYY");
 
-        // Group commands by category
         const cmdsByCategory = {};
         commands.forEach(command => {
-            const cat = command.category || "others";
+            const cat = command.category || "Others";
             if (!cmdsByCategory[cat]) cmdsByCategory[cat] = [];
             cmdsByCategory[cat].push(command);
         });
 
-        // Start building menu text
-        let text = `*${config.OWNER_NAME}*'s Bot Menu\n`;
-        text += `Version: ${botVer} | Platform: ${platform}\n`;
-        text += `Uptime: ${up} | Date: ${date} | Time: ${time}\n`;
-        text += "--------------------------------------\n";
+        // Sticker-style text
+        let text = `┏━━━━━━━━━━━━━━━┓\n`;
+        text += `┃  *${config.OWNER_NAME}'s Bot Menu*  ┃\n`;
+        text += `┣━━━━━━━━━━━━━━━┫\n`;
+        text += `┃ *Version:* ${botVer}\n`;
+        text += `┃ *Uptime:* ${up}\n`;
+        text += `┃ *OS:* ${platform}\n`;
+        text += `┃ *Date:* ${date}\n`;
+        text += `┃ *Time:* ${time}\n`;
+        text += `┣━━━━━━━━━━━━━━━┫\n`;
 
-        // Sort categories alphabetically for neatness
         const sortedCategories = Object.keys(cmdsByCategory).sort();
 
-        // Add commands per category
         for (const category of sortedCategories) {
-            text += `*${category.toUpperCase()}*\n`;
+            text += `┃ *${category.toUpperCase()}*\n`;
             cmdsByCategory[category].forEach(c => {
-                const aliases = c.alias && c.alias.length ? ` (aliases: ${c.alias.join(", ")})` : "";
-                text += `• ${config.PREFIX}${c.pattern}${aliases}\n`;
+                text += `┃ ➜ ${config.PREFIX}${c.pattern}\n`;
             });
-            text += "\n";
+            text += `┣━━━━━━━━━━━━━━━┫\n`;
         }
 
-        // Footer
-        text += `For command details: ${config.PREFIX}help <command>\n`;
-        text += "Qadeer-XTech Hacker Bot";
+        text += `┃ Type *${config.PREFIX}help cmd* for info\n`;
+        text += `┗━━━━━━━━━━━━━━━┛`;
 
-        // Send menu with image and caption
+        // Send as image caption
         await conn.sendMessage(from, {
             image: { url: config.MENU_IMAGE_URL || 'https://qu.ax/bBkkd.jpg' },
             caption: text
