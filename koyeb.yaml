@@ -1,6 +1,6 @@
-name: qadeer_xtech
+name: qadeer-xtech
 services:
-  - name: qadeer_xtech-service
+  - name: qadeer-xtech-service
     type: web
     ports:
       - 5000
