@@ -1,43 +1,67 @@
 const config = require('../config')
-const { cmd, commands } = require('../command'); // contains all registered commands
+const os = require('os')
+const moment = require('moment-timezone')
+const { cmd, commands } = require('../command')
+const { runtime } = require('../lib/functions') // Your custom runtime helper
 
 cmd({
     pattern: "menu",
     alias: ["allmenu", "fullmenu"],
-    desc: "Show all bot commands dynamically",
+    desc: "Show dynamic list of all bot commands",
     category: "menu",
     react: "📜",
     filename: __filename
 },
 async (conn, mek, m, { from, reply }) => {
     try {
+        // Group commands by category
         let grouped = {};
-
-        // 🔄 Group commands by category
         for (let cmd of commands) {
-            const cat = cmd.category || "Other";
+            const cat = cmd.category?.toUpperCase() || "UNCATEGORIZED";
             if (!grouped[cat]) grouped[cat] = [];
-            grouped[cat].push(cmd.pattern);
+            grouped[cat].push(cmd);
         }
 
-        let text = `╭───────✧ *${config.BOT_NAME} MENU* ✧───────╮\n`;
+        // Technical info
+        const botVer = config.BOT_VERSION || "v1.0.0";
+        const platform = os.platform();
+        const up = runtime(process.uptime());
+        const totalCmds = commands.length;
+        const time = moment.tz('Asia/Karachi').format("HH:mm:ss");
+        const date = moment.tz('Asia/Karachi').format("DD MMM YYYY");
 
-        // 📜 Format category-wise commands
-        for (let cat in grouped) {
-            text += `\n📂 *${cat.toUpperCase()}*\n`;
-            text += grouped[cat].map(c => `┃◈┃• ${config.PREFIX}${c}`).join('\n') + '\n';
+        // Header
+        let text = `╭───〔 *${config.BOT_NAME} - Command Menu* 〕───╮\n`;
+        text += `│ 👑 *Owner:* ${config.OWNER_NAME}\n`;
+        text += `│ 🕐 *Uptime:* ${up}\n`;
+        text += `│ 📅 *Date:* ${date} | ⏰ *Time:* ${time}\n`;
+        text += `│ ⚙️ *Platform:* ${platform}\n`;
+        text += `│ 🧠 *Bot Version:* ${botVer}\n`;
+        text += `│ 📚 *Total Commands:* ${totalCmds}\n`;
+        text += `╰──────────────────────────────────╯\n\n`;
+
+        // Category-wise commands
+        for (let category in grouped) {
+            text += `┌──〔 ${category} 〕──┐\n`;
+            text += grouped[category]
+                .map(cmd => `│ ◦ ${config.PREFIX}${cmd.pattern}${cmd.alias ? ` (${cmd.alias.join(", ")})` : ""}`)
+                .join('\n');
+            text += `\n└────────────────────┘\n\n`;
         }
 
-        text += `\n╰─────▸ *${config.OWNER_NAME} | QADEER-XTECH* ◂─────╯`;
+        // Footer
+        text += `╭───⧫ *Need Help?* ⧫───╮\n`;
+        text += `│ Try: ${config.PREFIX}help <command>\n`;
+        text += `╰─────▸ *Qadeer-XTech* ◂─────╯`;
 
-        // Send as image or plain message
+        // Send image with caption
         await conn.sendMessage(from, {
             image: { url: config.MENU_IMAGE_URL || 'https://qu.ax/bBkkd.jpg' },
             caption: text
         }, { quoted: mek });
 
-    } catch (e) {
-        console.error(e);
-        reply(`❌ Error: ${e}`);
+    } catch (err) {
+        console.error(err);
+        reply(`❌ *Menu Error:* ${err}`);
     }
 });
