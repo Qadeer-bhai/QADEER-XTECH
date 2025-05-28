@@ -10,7 +10,7 @@ ___
 
 Click the button below to fork:
 
-  <a href="https://github.com/Qadeer-bhai/QADEER-XTECH/fork"><img title="QADEER-XTECH" src="https://img.shields.io/badge/FORK-SHADOW XTECH-h?color=green&style=for-the-badge&logo=stackshare"></a>
+  <a href="https://github.com/Qadeer-bhai/QADEER-XTECH/fork"><img title="QADEER-XTECH" src="https://img.shields.io/badge/FORK-QADEER XTECH-h?color=green&style=for-the-badge&logo=stackshare"></a>
 
 ## ɢᴇᴛ ᴘᴀɪʀɪɴɢ ᴄᴏᴅᴇ
   <p align="left">  
