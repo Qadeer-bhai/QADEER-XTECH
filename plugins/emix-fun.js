@@ -4,7 +4,7 @@ const { getBuffer } = require("../lib/functions");
 const { Sticker, StickerTypes } = require("wa-sticker-formatter");
 
 cmd({
-    pattern: "emix",
+    pattern: "emojimix",
     desc: "Combine two emojis into a sticker.",
     category: "fun",
     react: "😃",
@@ -30,7 +30,7 @@ cmd({
 
         let buffer = await getBuffer(imageUrl);
         let sticker = new Sticker(buffer, {
-            pack: "Emoji Mix",
+            pack: "Qadeer Kulachi",
             author: "QADEER-XTECH",
             type: StickerTypes.FULL,
             categories: ["🤩", "🎉"],
