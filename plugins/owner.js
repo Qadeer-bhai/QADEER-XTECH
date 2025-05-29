@@ -36,7 +36,7 @@ async (conn, mek, m, { from }) => {
 │┃★├─• *Here is the owner details*
 │┃★├─• *Name* - ${ownerName}
 │┃★├─• *Number* ${ownerNumber}
-│┃★├─• *Version*: 2.0.0 Beta
+│┃★├─• *Version*: 4.2.0 PAK
 │┃★├─
 ┬╰──────────────────๏
 ╰─────···▸QADEER-XTECH··────◆
