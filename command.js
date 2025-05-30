@@ -1,20 +1,24 @@
-var commands = [];
+const commands = [];
 
 function cmd(info, func) {
-    var data = info;
-    data.function = func;
-    if (!data.dontAddCommandList) data.dontAddCommandList = false;
-    if (!info.desc) info.desc = '';
-    if (!data.fromMe) data.fromMe = false;
-    if (!info.category) data.category = 'misc';
-    if(!info.filename) data.filename = "Not Provided";
+    const data = {
+        ...info,
+        function: func,
+        desc: info.desc || '',
+        fromMe: info.fromMe || false,
+        category: info.category || 'misc',
+        filename: info.filename || 'Not Provided',
+        dontAddCommandList: info.dontAddCommandList || false,
+    };
+
     commands.push(data);
     return data;
 }
+
 module.exports = {
     cmd,
-    AddCommand:cmd,
-    Function:cmd,
-    Module:cmd,
+    AddCommand: cmd,
+    Function: cmd,
+    Module: cmd,
     commands,
 };
