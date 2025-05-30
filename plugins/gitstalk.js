@@ -13,26 +13,42 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
     try {
         const username = args[0];
         if (!username) {
-            return reply("Please provide a GitHub username.");
+            return reply("❗ Please provide a GitHub username.");
         }
+
         const apiUrl = `https://api.github.com/users/${username}`;
         const response = await axios.get(apiUrl);
         const data = response.data;
 
-        let userInfo = `👤 *Username*: ${data.name || data.login}
-🔗 *Github Url*:(${data.html_url})
-📝 *Bio*: ${data.bio || 'Not available'}
-🏙️ *Location*: ${data.location || 'Unknown'}
-📊 *Public Repos*: ${data.public_repos}
-👥 *Followers*: ${data.followers} | Following: ${data.following}
-📅 *Created At*: ${new Date(data.created_at).toDateString()}
-🔭 *Public Gists*: ${data.public_gists}
-> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ QADEER-XTECH`;
-          const sentMsg = await conn.sendMessage(from,{image:{url: data.avatar_url },caption: userInfo },{quoted:mek })
+        let userInfo = `
+╭━━━[ 🧑‍💻 *GitHub User Info* ]
+┃
+┃ 🔸 *Name:* ${data.name || data.login}
+┃ 🔸 *Username:* @${data.login}
+┃ 🔸 *Bio:* ${data.bio || 'Not available'}
+┃ 🔸 *Location:* ${data.location || 'Unknown'}
+┃ 🔸 *Public Repos:* ${data.public_repos}
+┃ 🔸 *Followers:* ${data.followers}
+┃ 🔸 *Following:* ${data.following}
+┃ 🔸 *Public Gists:* ${data.public_gists}
+┃ 🔸 *Account Created:* ${new Date(data.created_at).toDateString()}
+┃ 🔸 *GitHub URL:* ${data.html_url}
+┃
+╰━━━[ 🔰 *Powered by QADEER-XTECH* ]`;
+
+        await conn.sendMessage(
+            from,
+            {
+                image: { url: data.avatar_url },
+                caption: userInfo
+            },
+            { quoted: mek }
+        );
+
     } catch (e) {
         console.log(e);
-        reply(`error: ${e.response ? e.response.data.message : e.message}`);
+        reply(`❌ Error: ${e.response ? e.response.data.message : e.message}`);
     }
 });
 
-// Black-Tappy
+// Modified by Qadeer 💻
