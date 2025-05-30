@@ -32,25 +32,17 @@ cmd({
             return reply("⚠️ Failed to fetch the video. Please try again later.");
         }
 
-        const dotLine = "⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂";
+        // Thin line symbol (can be changed to — or | if you want)
+        const lineStart = "┃";  // You can replace with "—" or "|" if you prefer
 
         const ytmsg = `
 ╭━━━━━🔥 YOUTUBE VIDEO DOWNLOADER 🔥━━━━━╮
 
-📀 Title    : ${yts.title}
-${dotLine}
-
-⏱️ Duration : ${yts.timestamp}
-${dotLine}
-
-👁️‍🗨️ Views    : ${yts.views}
-${dotLine}
-
-🧑‍💻 Author   : ${yts.author.name}
-${dotLine}
-
-🌐 Link     : ${videoUrl}
-${dotLine}
+${lineStart} Title    : ${yts.title}
+${lineStart} Duration : ${yts.timestamp}
+${lineStart} Views    : ${yts.views}
+${lineStart} Author   : ${yts.author.name}
+${lineStart} Link     : ${videoUrl}
 
 ╰─────🔰 Powered by QADEER-XTECH 🩷─────╯
         `.trim();
