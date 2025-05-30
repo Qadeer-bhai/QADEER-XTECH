@@ -9,7 +9,7 @@
   
     "env": {
       "SESSION_ID": {
-        "description": "Put your SESSION_ID here. Make sure it starts with QADEER~  or get session id from here,  https://newtester-6e302603809f.herokuapp.com",
+        "description": "Put your SESSION_ID here. Make sure it starts with QADEER;;;  or get session id from here,  https://newtester-6e302603809f.herokuapp.com",
         "value":"",
         "required": true
         
