@@ -1,357 +1,89 @@
 const config = require('../config')
-const { cmd, commands } = require('../command');
+const { cmd, commands } = require('../command')
 const os = require("os")
-const {runtime} = require('../lib/functions')
+const { runtime } = require('../lib/functions')
 const axios = require('axios')
 
-cmd({
+// Grouped commands for each category
+const menus = {
+  download: [
+    "facebook", "mediafire", "tiktok", "twitter", "insta", "apk", "img", "tt2", "pins", "fb2",
+    "pinterest", "spotify", "play", "play2", "audio", "video2", "ytmp3", "ytmp4", "song", "darama", "gdrive", "ssweb", "tiks"
+  ],
+  group: [
+    "grouplink", "kickall", "kickall2", "kickall3", "add", "remove", "kick", "promote", "demote",
+    "dismiss", "revoke", "setgoodbye", "setwelcome", "delete", "getpic", "ginfo", "disappear on", "disappear off",
+    "disappear 7D,24H", "allreq", "updategname", "updategdesc", "joinrequests", "senddm", "nikal", "mute", "unmute",
+    "lockgc", "unlockgc", "invite", "tag", "hidetag", "tagall", "tagadmins"
+  ],
+  reactions: [
+    "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet", "blush", "smile", "wave",
+    "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "happy", "wink", "poke", "dance", "cringe"
+  ],
+  logo: [
+    "neonlight", "blackpink", "dragonball", "3dcomic", "america", "naruto", "sadgirl", "clouds", "futuristic", "3dpaper",
+    "eraser", "sunset", "leaf", "galaxy", "sans", "boom", "hacker", "devilwings", "nigeria", "bulb", "angelwings", "zodiac",
+    "luxury", "paint", "frozen", "castle", "tatoo", "valorant", "bear", "typography", "birthday"
+  ],
+  owner: [
+    "owner", "menu", "vv", "listcmd", "allmenu", "repo", "block", "unblock", "fullpp", "setpp", "restart", "shutdown",
+    "updatecmd", "alive", "ping", "gjid", "jid"
+  ],
+  fun: [
+    "shapar", "rate", "insult", "hack", "ship", "character", "pickup", "joke", "hrt", "hpy", "syd", "anger", "shy",
+    "kiss", "mon", "cunfuzed", "setpp", "hand", "nikal", "hold", "hug", "hifi", "poke"
+  ],
+  convert: [
+    "sticker", "emojimix", "fancy", "take", "tomp3", "tts", "trt", "base64", "unbase64", "binary", "dbinary", "tinyurl",
+    "urldecode", "urlencode", "url", "repeat", "ask", "readmore"
+  ],
+  ai: [
+    "imagine", "imagine2"
+  ],
+  main: [
+    "ping", "ping2", "speed", "live", "alive", "runtime", "uptime", "repo", "owner", "menu", "restart"
+  ],
+  anime: [
+    "fack", "truth", "dare", "dog", "awoo", "garl", "waifu", "neko", "megnumin", "maid", "loli", "animegirl", "animegirl1",
+    "animegirl2", "animegirl3", "animegirl4", "animegirl5", "anime1", "anime2", "anime3", "anime4", "anime5", "animenews",
+    "foxgirl", "naruto"
+  ],
+  other: [
+    "timenow", "date", "count", "calculate", "countx", "flip", "coinflip", "rcolor", "roll", "fact", "cpp", "rw", "fancy",
+    "logo", "define", "news", "movie", "weather", "insult", "save", "wikipedia", "gpass", "githubstalk", "yts"
+  ]
+}
+
+// Command to handle `.menu` or numeric replies
+cmd(
+  {
     pattern: "menu",
-    alias: ["allmenu","fullmenu"],
-    use: '.menu2',
-    desc: "Show all bot commands",
-    category: "menu",
-    react: "📜",
+    desc: "Show all bot command categories",
+    category: "main",
     filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let dec = `╭────✧〈 🚀 *${config.BOT_NAME}* 〉 ✧───◆
-┴╭─────────────๏
-┃★╭─────────────────·๏
-┃★│ 👑 Owner : *${config.OWNER_NAME}*
-┃★│ 🤖 Baileys : *Multi Device*
-┃★│ 💻 Type : *Node.Js*
-┃★│ 🚀 Platform : *Heroku*
-┃★│ ⚙️ Mode : *[${config.MODE}]*
-┃★│ 🔣 Prefix : *[${config.PREFIX}]*
-┃★│ 🏷️ Version : *4.2.0 PAK*
-┃★╰─────────────────┈⊷
-┬╰──────────────๏
-╰─── ···▸QADEER-XTECH··──◆
-
-╭────✧〈 📥 *DOWNLOAD MENU* 〉 ✧───◆
-┴╭──────────────────๏
-┃◈┃• 🟦 facebook
-┃◈┃• 📁 mediafire
-┃◈┃• 🎵 tiktok
-┃◈┃• 🐦 twitter
-┃◈┃• 📷 insta
-┃◈┃• 📦 apk
-┃◈┃• 🖼️ img
-┃◈┃• ▶️ tt2
-┃◈┃• 📌 pins
-┃◈┃• 🔵 fb2
-┃◈┃• 📍 pinterest
-┃◈┃• 🎶 spotify
-┃◈┃• 🎧 play
-┃◈┃• 🎧 play2
-┃◈┃• 🔉 audio
-┃◈┃• 📹 video2
-┃◈┃• 🎵 ytmp3
-┃◈┃• 📹 ytmp4
-┃◈┃• 🎶 song
-┃◈┃• 🎬 darama
-┃◈┃• ☁️ gdrive
-┃◈┃• 🌐 ssweb
-┃◈┃• 🎵 tiks
-┬╰──────────────────๏
-╰─────···▸QADEER-XTECH··────◆
-
-╭────✧〈 👥 *GROUP MENU* 〉 ✧───◆
-┴╭──────────────────๏
-┃◈┃• 🔗 grouplink
-┃◈┃• 🚪 kickall
-┃◈┃• 🚷 kickall2
-┃◈┃• 🚫 kickall3
-┃◈┃• ➕ add
-┃◈┃• ➖ remove
-┃◈┃• 👢 kick
-┃◈┃• ⬆️ promote
-┃◈┃• ⬇️ demote
-┃◈┃• 🚮 dismiss
-┃◈┃• 🔄 revoke
-┃◈┃• 👋 setgoodbye
-┃◈┃• 🎉 setwelcome
-┃◈┃• 🗑️ delete
-┃◈┃• 🖼️ getpic
-┃◈┃• ℹ️ ginfo
-┃◈┃• ⏳ disappear on
-┃◈┃• ⏳ disappear off
-┃◈┃• ⏳ disappear 7D,24H
-┃◈┃• 📝 allreq
-┃◈┃• ✏️ updategname
-┃◈┃• 📝 updategdesc
-┃◈┃• 📩 joinrequests
-┃◈┃• 📨 senddm
-┃◈┃• 🏃 nikal
-┃◈┃• 🔇 mute
-┃◈┃• 🔊 unmute
-┃◈┃• 🔒 lockgc
-┃◈┃• 🔓 unlockgc
-┃◈┃• 📩 invite
-┃◈┃• #️⃣ tag
-┃◈┃• 🏷️ hidetag
-┃◈┃• @️⃣ tagall
-┃◈┃• 👔 tagadmins
-┬╰──────────────────๏
-╰─────···▸QADEER-XTECH··────◆
-
-╭────✧〈 🎭 *REACTIONS MENU** 〉 ✧───◆
-┴╭──────────────────๏
-┃◈┃• 👊 bully @tag
-┃◈┃• 🤗 cuddle @tag
-┃◈┃• 😢 cry @tag
-┃◈┃• 🤗 hug @tag
-┃◈┃• 🐺 awoo @tag
-┃◈┃• 💋 kiss @tag
-┃◈┃• 👅 lick @tag
-┃◈┃• 🖐️ pat @tag
-┃◈┃• 😏 smug @tag
-┃◈┃• 🔨 bonk @tag
-┃◈┃• 🚀 yeet @tag
-┃◈┃• 😊 blush @tag
-┃◈┃• 😄 smile @tag
-┃◈┃• 👋 wave @tag
-┃◈┃• ✋ highfive @tag
-┃◈┃• 🤝 handhold @tag
-┃◈┃• 🍜 nom @tag
-┃◈┃• 🦷 bite @tag
-┃◈┃• 🤗 glomp @tag
-┃◈┃• 👋 slap @tag
-┃◈┃• 💀 kill @tag
-┃◈┃• 😊 happy @tag
-┃◈┃• 😉 wink @tag
-┃◈┃• 👉 poke @tag
-┃◈┃• 💃 dance @tag
-┃◈┃• 😬 cringe @tag
-┬╰──────────────────๏
-╰─────···▸QADEER-XTECH··────◆
-
-╭────✧〈 🎨 *LOGO MAKER* 〉 ✧───◆
-┴╭──────────────────๏
-┃◈┃• 💡 neonlight
-┃◈┃• 🎀 blackpink
-┃◈┃• 🐉 dragonball
-┃◈┃• 🎭 3dcomic
-┃◈┃• 🇺🇸 america
-┃◈┃• 🍥 naruto
-┃◈┃• 😢 sadgirl
-┃◈┃• ☁️ clouds
-┃◈┃• 🚀 futuristic
-┃◈┃• 📜 3dpaper
-┃◈┃• ✏️ eraser
-┃◈┃• 🌇 sunset
-┃◈┃• 🍃 leaf
-┃◈┃• 🌌 galaxy
-┃◈┃• 💀 sans
-┃◈┃• 💥 boom
-┃◈┃• 💻 hacker
-┃◈┃• 😈 devilwings
-┃◈┃• 🇳🇬 nigeria
-┃◈┃• 💡 bulb
-┃◈┃• 👼 angelwings
-┃◈┃• ♈ zodiac
-┃◈┃• 💎 luxury
-┃◈┃• 🎨 paint
-┃◈┃• ❄️ frozen
-┃◈┃• 🏰 castle
-┃◈┃• 🖋️ tatoo
-┃◈┃• 🔫 valorant
-┃◈┃• 🐻 bear
-┃◈┃• 🔠 typography
-┃◈┃• 🎂 birthday
-┬╰──────────────────๏
-╰─────···▸QADEER-XTECH··────◆
-
-╭────✧〈 👑 *OWNER MENU* 〉 ✧───◆
-┴╭──────────────────๏
-┃◈┃• 👑 owner
-┃◈┃• 📜 menu
-┃◈┃• 📊 vv
-┃◈┃• 📋 listcmd
-┃◈┃• 📚 allmenu
-┃◈┃• 📦 repo
-┃◈┃• 🚫 block
-┃◈┃• ✅ unblock
-┃◈┃• 🖼️ fullpp
-┃◈┃• 🖼️ setpp
-┃◈┃• 🔄 restart
-┃◈┃• ⏹️ shutdown
-┃◈┃• 🔄 updatecmd
-┃◈┃• 💚 alive
-┃◈┃• 🏓 ping
-┃◈┃• 🆔 gjid
-┃◈┃• 🆔 jid
-┬╰──────────────────๏
-╰─────···▸QADEER-XTECH··────◆
-
-╭────✧〈 🎉 *FUN MENU* 〉 ✧───◆
-┴╭──────────────────๏
-┃◈┃• 🤪 shapar
-┃◈┃• ⭐ rate
-┃◈┃• 🤬 insult
-┃◈┃• 💻 hack
-┃◈┃• 💘 ship
-┃◈┃• 🎭 character
-┃◈┃• 💌 pickup
-┃◈┃• 😆 joke
-┃◈┃• ❤️ hrt
-┃◈┃• 😊 hpy
-┃◈┃• 😔 syd
-┃◈┃• 😠 anger
-┃◈┃• 😳 shy
-┃◈┃• 💋 kiss
-┃◈┃• 🧐 mon
-┃◈┃• 😕 cunfuzed
-┃◈┃• 🖼️ setpp
-┃◈┃• ✋ hand
-┃◈┃• 🏃 nikal
-┃◈┃• 🤲 hold
-┃◈┃• 🤗 hug
-┃◈┃• 🏃 nikal
-┃◈┃• 🎵 hifi
-┃◈┃• 👉 poke
-┬╰──────────────────๏
-╰─────···▸QADEER-XTECH··────◆
-
-╭────✧〈 🔄 *CONVERT MENU* 〉 ✧───◆
-┴╭──────────────────๏
-┃◈┃• 🏷️ sticker
-┃◈┃• 😀 emojimix
-┃◈┃• ✨ fancy
-┃◈┃• 🖼️ take
-┃◈┃• 🎵 tomp3
-┃◈┃• 🗣️ tts
-┃◈┃• 🌐 trt
-┃◈┃• 🔢 base64
-┃◈┃• 🔠 unbase64
-┃◈┃• 010 binary
-┃◈┃• 🔤 dbinary
-┃◈┃• 🔗 tinyurl
-┃◈┃• 🌐 urldecode
-┃◈┃• 🌐 urlencode
-┃◈┃• 🌐 url
-┃◈┃• 🔁 repeat
-┃◈┃• ❓ ask
-┃◈┃• 📖 readmore
-┬╰──────────────────๏
-╰─────···▸QADEER-XTECH··────◆
-
-╭────✧〈 🤖 *AI MENU 〉 ✧───◆
-┴╭──────────────────๏
-┃◈┃• 🎨 imagine
-┃◈┃• 🖼️ imagine2
-┬╰──────────────────๏
-╰─────···▸QADEER-XTECH··────◆
-
-╭────✧〈 ⚡ *MAIN MENU* 〉 ✧───◆
-┴╭──────────────────๏
-┃◈┃• 🏓 ping
-┃◈┃• 🏓 ping2
-┃◈┃• 🚀 speed
-┃◈┃• 📡 live
-┃◈┃• 💚 alive
-┃◈┃• ⏱️ runtime
-┃◈┃• ⏳ uptime
-┃◈┃• 📦 repo
-┃◈┃• 👑 owner
-┃◈┃• 📜 menu
-┃◈┃• 🔄 restart
-┬╰──────────────────๏
-╰─────···▸QADEER-XTECH··────◆
-
-╭────✧〈 🎎 *ANIME MENU* 〉 ✧───◆
-┴╭──────────────────๏
-┃◈┃• 🤬 fack
-┃◈┃• ✅ truth
-┃◈┃• 😨 dare
-┃◈┃• 🐶 dog
-┃◈┃• 🐺 awoo
-┃◈┃• 👧 garl
-┃◈┃• 👰 waifu
-┃◈┃• 🐱 neko
-┃◈┃• 🧙 megnumin
-┃◈┃• 🐱 neko
-┃◈┃• 👗 maid
-┃◈┃• 👧 loli
-┃◈┃• 🎎 animegirl
-┃◈┃• 🎎 animegirl1
-┃◈┃• 🎎 animegirl2
-┃◈┃• 🎎 animegirl3
-┃◈┃• 🎎 animegirl4
-┃◈┃• 🎎 animegirl5
-┃◈┃• 🎬 anime1
-┃◈┃• 🎬 anime2
-┃◈┃• 🎬 anime3
-┃◈┃• 🎬 anime4
-┃◈┃• 🎬 anime5
-┃◈┃• 📰 animenews
-┃◈┃• 🦊 foxgirl
-┃◈┃• 🍥 naruto
-┬╰──────────────────๏
-╰─────···▸QADEER-XTECH··────◆
-
-╭────✧〈 ℹ️ *OTHER MENU* 〉 ✧───◆
-┴╭──────────────────๏
-┃◈┃• 🕒 timenow
-┃◈┃• 📅 date
-┃◈┃• 🔢 count
-┃◈┃• 🧮 calculate
-┃◈┃• 🔢 countx
-┃◈┃• 🎲 flip
-┃◈┃• 🪙 coinflip
-┃◈┃• 🎨 rcolor
-┃◈┃• 🎲 roll
-┃◈┃• ℹ️ fact
-┃◈┃• 💻 cpp
-┃◈┃• 🎲 rw
-┃◈┃• 💑 pair
-┃◈┃• 💑 pair2
-┃◈┃• 💑 pair3
-┃◈┃• ✨ fancy
-┃◈┃• 🎨 logo <text>
-┃◈┃• 📖 define
-┃◈┃• 📰 news
-┃◈┃• 🎬 movie
-┃◈┃• ☀️ weather
-┃◈┃• 🤬 insult
-┃◈┃• 💾 save
-┃◈┃• 🌐 wikipedia
-┃◈┃• 🔑 gpass
-┃◈┃• 👤 githubstalk
-┃◈┃• 🔍 yts
-┬╰──────────────────๏
-╰─────···▸QADEER-XTECH··────◆
-> ${config.DESCRIPTION}`;
-
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: config.MENU_IMAGE_URL || 'https://qu.ax/bBkkd.jpg' },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363345872435489@newsletter',
-                        newsletterName: config.BOT_NAME,
-                        serverMessageId: 143
-                    }
-                }
-            },
-            { quoted: mek }
-        );
-
-        // Send audio
-        await conn.sendMessage(from, {
-            audio: { url: 'https://files.catbox.moe/jrfk1n.mp3' },
-            mimetype: 'audio/mp4',
-            ptt: true
-        }, { quoted: mek });
-        
-    } catch (e) {
-        console.log(e);
-        reply(`❌ Error: ${e}`);
+  },
+  async (m, text) => {
+    if (!text) {
+      let response = "╭────✧〈 🧠 *MENU CATEGORIES* 〉 ✧───◆\n";
+      const cats = Object.keys(menus);
+      cats.forEach((cat, index) => {
+        response += `┃◈┃• ${index + 1}. ${cat.toUpperCase()}\n`;
+      });
+      response += "╰─────▸ *Reply with a number to view commands.*";
+      return m.reply(response);
     }
-});
+
+    const index = parseInt(text) - 1;
+    const keys = Object.keys(menus);
+
+    if (index >= 0 && index < keys.length) {
+      const cat = keys[index];
+      const cmds = menus[cat].map(cmd => `┃◈┃• ${cmd}`).join("\n");
+      return m.reply(
+        `╭────✧〈 ${cat.toUpperCase()} MENU 〉 ✧───◆\n${cmds}\n╰─────▸ QADEER-XTECH`
+      );
+    }
+
+    return m.reply("❌ Invalid category number. Please reply with a valid number.");
+  }
+)
