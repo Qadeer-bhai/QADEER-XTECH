@@ -24,39 +24,39 @@ cmd({
     const user = data.data.user;
     const stats = data.data.stats;
 
-    const profileInfo = `╭────✧〈『 QADEER-XTECH 』 〉 ✧───◆
-┴╭──────────────────๏
-│┃★├─
-│┃★├─👤 *Username:* @${user.uniqueId}
-│┃★├─📛 *Nickname:* ${user.nickname}
-│┃★├─✅ *Verified:* ${user.verified ? "Yes ✅" : "No ❌"}
-│┃★├─📍 *Region:* ${user.region}
-│┃★├─📝 *Bio:* ${user.signature || "No bio available."}
-│┃★├─🔗 *Bio Link:* ${user.bioLink?.link || "No link available."}
-│┃★├─
-┬╰──────────────────๏
-╰─────···▸QADEER-XTECH··────◆
-╭────✧〈『 📊 *Statistics:* 』 〉 ✧───◆
-┴╭──────────────────๏
-│┃★├─
-│┃★├─👥 *Followers:* ${stats.followerCount.toLocaleString()}
-│┃★├─👤 *Following:* ${stats.followingCount.toLocaleString()}
-│┃★├─❤️ *Likes:* ${stats.heartCount.toLocaleString()}
-│┃★├─🎥 *Videos:* ${stats.videoCount.toLocaleString()}
-│┃★├─📅 *Account Created:* ${new Date(user.createTime * 1000).toLocaleDateString()}
-│┃★├─🔒 *Private Account:* ${user.privateAccount ? "Yes 🔒" : "No 🌍"}
-│┃★├─🔗 *Profile URL:* https://www.tiktok.com/@${user.uniqueId}
-│┃★├─
-┬╰──────────────────๏
-╰─────···▸QADEER-XTECH··────◆
+    const profileInfo = `
+╭───『 🔍 TikTok Profile 』───╮
+
+🧾 ▌Username:        @${user.uniqueId}
+🧾 ▌Nickname:        ${user.nickname}
+🧾 ▌Verified:        ${user.verified ? "Yes ✅" : "No ❌"}
+🧾 ▌Region:          ${user.region}
+🧾 ▌Bio:             ${user.signature || "No bio available."}
+🧾 ▌Bio Link:        ${user.bioLink?.link || "No link available."}
+
+╰────────────────────────────╯
+╭───『 📊 Statistics 』───╮
+
+📈 ▌Followers:       ${stats.followerCount.toLocaleString()}
+📈 ▌Following:       ${stats.followingCount.toLocaleString()}
+📈 ▌Likes:           ${stats.heartCount.toLocaleString()}
+📈 ▌Videos:          ${stats.videoCount.toLocaleString()}
+📈 ▌Created At:      ${new Date(user.createTime * 1000).toLocaleDateString()}
+📈 ▌Private:         ${user.privateAccount ? "Yes 🔒" : "No 🌍"}
+📈 ▌Profile URL:     https://www.tiktok.com/@${user.uniqueId}
+
+╰───『 © QADEER-XTECH 』───╯
 `;
 
-    const profileImage = { image: { url: user.avatarLarger }, caption: profileInfo };
+    const profileImage = {
+      image: { url: user.avatarLarger },
+      caption: profileInfo
+    };
 
     await conn.sendMessage(from, profileImage, { quoted: m });
+
   } catch (error) {
     console.error("❌ Error in TikTok stalk command:", error);
     reply("⚠️ An error occurred while fetching TikTok profile data.");
   }
 });
-
