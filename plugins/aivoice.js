@@ -6,7 +6,7 @@ cmd({
     alias: ["vai", "voicex", "voiceai"],
     desc: "Text to speech with different AI voices",
     category: "main",
-    react: "🪃",
+    react: "🧑‍🎤",
     filename: __filename
 },
 async (conn, mek, m, { 
