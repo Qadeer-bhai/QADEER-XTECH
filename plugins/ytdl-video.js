@@ -36,7 +36,7 @@ cmd({
         const response = await fetch(apiUrl);
         const data = await response.json();
 
-        if (!data.success) return await reply("❌ Failed to download video!");
+        if (!data.success) return await reply("❌ Failed | API error!");
 
         await conn.sendMessage(from, {
             video: { url: data.result.download_url },
