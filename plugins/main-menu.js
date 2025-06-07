@@ -22,7 +22,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ║ Hosting   : *Heroku*
 ║ Mode      : *[ ${config.MODE} ]*
 ║ Prefix    : *[ ${config.PREFIX} ]*
-║ Version   : *4.2.0 PAK*
+║ Version   : *4.2.0 NEW*
 ╚═══════════════╝
 
 ╭✧〈 *MAIN MENU* 〉
@@ -57,7 +57,8 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃🜸 audio
 ┃🜸 video2
 ┃🜸 ytmp3
-┃🜸 ytmp4
+┃🜸 mp4
+┃🜸 mp3
 ┃🜸 song
 ┃🜸 darama
 ┃🜸 gdrive
@@ -169,7 +170,14 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃🜸 owner
 ┃🜸 menu
 ┃🜸 vv
+┃🜸 out
+┃🜸 ban
+┃🜸 unban
+┃🜸 setsudo
+┃🜸 delsudo
 ┃🜸 listcmd
+┃🜸 listban
+┃🜸 listsudo
 ┃🜸 allmenu
 ┃🜸 repo
 ┃🜸 block
@@ -235,6 +243,9 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ╭✧〈 *AI MENU* 〉
 ┃🜸 imagine
 ┃🜸 imagine2
+┃🜸 ai
+┃🜸 openai
+┃🜸 deepseek
 ╰────────────๏
 
 ╭✧〈 *ANIME MENU* 〉
@@ -265,6 +276,12 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃🜸 naruto
 ╰────────────๏
 
+
+╭✧〈 *UTILITY MENU* 〉
+┃🜸 pos
+┃🜸 captiont
+╰────────────๏
+
 ╭✧〈 *OTHER MENU* 〉
 ┃🜸 timenow
 ┃🜸 date
@@ -287,9 +304,15 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃🜸 insult
 ┃🜸 save
 ┃🜸 wikipedia
-┃🜸 gpass
-┃🜸 githubstalk
 ┃🜸 yts
+┃🜸 githubstalk
+┃🜸 gpass
+╰────────────๏
+
+
+╭✧〈 *WHATSAPL MENU* 〉
+┃🜸 cid
+┃🜸 chr
 ╰────────────๏
 
 > ${config.DESCRIPTION}`;
