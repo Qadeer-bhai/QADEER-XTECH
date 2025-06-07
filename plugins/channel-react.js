@@ -11,12 +11,12 @@ const stylizedChars = {
 };
 
 cmd({
-    pattern: "chr",
+    pattern: "channel-react",
     alias: ["creact"],
     react: "🔤",
     desc: "React to channel messages with stylized text",
     category: "owner",
-    use: '.chr <channel-link> <text>',
+    use: '.channel-id <channel-link> <text>',
     filename: __filename
 },
 async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isCreator, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
