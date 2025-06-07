@@ -15,17 +15,17 @@ cmd({
 }, 
 async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
-        let dec = `╔═══════〔 🚀 *${config.BOT_NAME}* 〕═══════╗
+        let dec = `╔═════〔 *${config.BOT_NAME}* 〕═════╗
 ║
-║ 👑 Owner      : *${config.OWNER_NAME}*
-║ 🤖 Library    : *Baileys MD*
-║ 💻 Type       : *Node.js*
-║ ☁️ Hosting    : *Heroku*
-║ ⚙️ Mode       : *[ ${config.MODE} ]*
-║ 🔣 Prefix     : *[ ${config.PREFIX} ]*
-║ 🏷️ Version    : *4.2.0 PAK*
+║ Owner     : *${config.OWNER_NAME}*
+║ Library   : *Baileys MD*
+║ Type      : *Node.js*
+║ Hosting   : *Heroku*
+║ Mode      : *[ ${config.MODE} ]*
+║ Prefix    : *[ ${config.PREFIX} ]*
+║ Version   : *4.2.0 PAK*
 ║
-╚═════════════════════════════╝
+╚════════════════════════╝
 
 ╭✧〈 *MAIN MENU* 〉
 ┃🜸 ping
