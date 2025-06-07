@@ -310,9 +310,9 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ╰────────────๏
 
 
-╭✧〈 *WHATSAPL MENU* 〉
-┃🜸 cid
-┃🜸 chr
+╭✧〈 *WHATSAPP MENU* 〉
+┃🜸 channel-id
+┃🜸 channel-react
 ╰────────────๏
 
 > ${config.DESCRIPTION}`;
