@@ -1,7 +1,7 @@
 const { cmd } = require("../command");
 
 cmd({
-  pattern: "cid",
+  pattern: "channel-id",
   alias: ["newsletter", "id"],
   react: "📡",
   desc: "Get WhatsApp Channel info from link",
