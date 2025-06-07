@@ -15,7 +15,7 @@ cmd({
         if (!q) return await reply("❌ Please provide a video name or YouTube URL!");
 
         let videoUrl, title;
-        
+
         // Check if it's a URL
         if (q.match(/(youtube\.com|youtu\.be)/)) {
             videoUrl = q;
@@ -31,15 +31,15 @@ cmd({
 
         await reply("⏳ Downloading video...");
 
-        // Use API to get video
-        const apiUrl = `https://apis.davidcyriltech.my.id/download/ytmp4?url=${encodeURIComponent(videoUrl)}`;
+        // Use public API
+        const apiUrl = `https://api.zkyapi.xyz/downloader/youtube?url=${encodeURIComponent(videoUrl)}`;
         const response = await fetch(apiUrl);
         const data = await response.json();
 
-        if (!data.success) return await reply("❌ Failed | API error!");
+        if (!data.status) return await reply("❌ Failed to download video or api error!");
 
         await conn.sendMessage(from, {
-            video: { url: data.result.download_url },
+            video: { url: data.result.mp4.url },
             mimetype: 'video/mp4',
             caption: `*${title}*`
         }, { quoted: mek });
