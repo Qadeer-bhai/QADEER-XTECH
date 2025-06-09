@@ -276,12 +276,6 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃🜸 naruto
 ╰────────────๏
 
-
-╭✧〈 *UTILITY MENU* 〉
-┃🜸 pos
-┃🜸 captiont
-╰────────────๏
-
 ╭✧〈 *OTHER MENU* 〉
 ┃🜸 timenow
 ┃🜸 date
