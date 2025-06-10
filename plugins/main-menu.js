@@ -22,14 +22,8 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 try {
 
 // Step-wise loading messages  
-        await conn.sendMessage(from, { text: "📡 Loading Menu..." }, { quoted: mek });  
-        await delay(1000);  
-        await conn.sendMessage(from, { text: "⚙️ Bot Is Running..." }, { quoted: mek });  
-        await delay(1000);  
-        await conn.sendMessage(from, { text: "📊 Waiting For Main Menu..." }, { quoted: mek });  
-        await delay(1000);  
         await conn.sendMessage(from, { text: "✅ *Welcome To Main Menu!* 🎉" }, { quoted: mek });  
-        await delay(1200);  
+        await delay(1000);  
 
         let dec = `╔═〔 *${config.BOT_NAME}* 〕╗
 
