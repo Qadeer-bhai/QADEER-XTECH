@@ -6,69 +6,43 @@ const axios = require('axios')
 
 // Helper delay function
 function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 cmd({
-    pattern: "menu",
-    alias: ["allmenu", "fullmenu"],
-    use: '.menu2',
-    desc: "Show all bot commands",
-    category: "menu",
-    react: "📜",
-    filename: __filename
+pattern: "menu",
+alias: ["allmenu", "fullmenu"],
+use: '.menu2',
+desc: "Show all bot commands",
+category: "menu",
+react: "📜",
+filename: __filename
 },
-    async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-        try {
+async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+try {
 
-            // Step-wise loading messages (converted to English)
-            await conn.sendMessage(from, { text: "📡 Loading menu..." }, { quoted: mek });
-            await delay(1000);
-            await conn.sendMessage(from, { text: "⚙️ Bot is running..." }, { quoted: mek });
-            await delay(1000);
-            await conn.sendMessage(from, { text: "📊 Generating output..." }, { quoted: mek });
-            await delay(1000);
-            await conn.sendMessage(from, { text: "✅ *Welcome to the Main Menu!* 🎉" }, { quoted: mek });
-            await delay(1000);
+// Step-wise loading messages  
+        await conn.sendMessage(from, { text: "📡 Loading Menu..." }, { quoted: mek });  
+        await delay(1000);  
+        await conn.sendMessage(from, { text: "⚙️ Bot Is Running..." }, { quoted: mek });  
+        await delay(1000);  
+        await conn.sendMessage(from, { text: "📊 Waiting For Main Menu..." }, { quoted: mek });  
+        await delay(1000);  
+        await conn.sendMessage(from, { text: "✅ *Welcome To Main Menu!* 🎉" }, { quoted: mek });  
+        await delay(1200);  
 
-            // Sticker before menu sections (for aesthetics)
-            await conn.sendMessage(from, { sticker: { url: 'https://i.ibb.co/7pZPgKt/mainmenu.webp' } }, { quoted: mek }); // Main Menu
-            await delay(400);
-            await conn.sendMessage(from, { sticker: { url: 'https://i.ibb.co/WzytKjm/downloadmenu.webp' } }, { quoted: mek }); // Download Menu
-            await delay(400);
-            await conn.sendMessage(from, { sticker: { url: 'https://i.ibb.co/zQW7nH2/groupmenu.webp' } }, { quoted: mek }); // Group Menu
-            await delay(400);
-            await conn.sendMessage(from, { sticker: { url: 'https://i.ibb.co/xYqQzhd/reactionmenu.webp' } }, { quoted: mek }); // Reactions Menu
-            await delay(400);
-            await conn.sendMessage(from, { sticker: { url: 'https://i.ibb.co/X5ZBpC0/logomaker.webp' } }, { quoted: mek }); // Logo Maker
-            await delay(400);
-            await conn.sendMessage(from, { sticker: { url: 'https://i.ibb.co/N9RCzrN/ownermenu.webp' } }, { quoted: mek }); // Owner Menu
-            await delay(400);
-            await conn.sendMessage(from, { sticker: { url: 'https://i.ibb.co/KG9xyZ0/funmenu.webp' } }, { quoted: mek }); // Fun Menu
-            await delay(400);
-            await conn.sendMessage(from, { sticker: { url: 'https://i.ibb.co/0f7WpQC/convertmenu.webp' } }, { quoted: mek }); // Convert Menu
-            await delay(400);
-            await conn.sendMessage(from, { sticker: { url: 'https://i.ibb.co/QP7GDsn/aimenu.webp' } }, { quoted: mek }); // AI Menu
-            await delay(400);
-            await conn.sendMessage(from, { sticker: { url: 'https://i.ibb.co/BLG9nCP/animemenu.webp' } }, { quoted: mek }); // Anime Menu
-            await delay(400);
-            await conn.sendMessage(from, { sticker: { url: 'https://i.ibb.co/kSHCcLy/othermenu.webp' } }, { quoted: mek }); // Other Menu
-            await delay(400);
-            await conn.sendMessage(from, { sticker: { url: 'https://i.ibb.co/Mc9PMDn/whatsappmenu.webp' } }, { quoted: mek }); // WhatsApp Menu
-            await delay(400);
+        let dec = `╔═〔 *${config.BOT_NAME}* 〕╗
 
-            // Menu Caption
-            let dec = `╔═〔 *${config.BOT_NAME}* 〕╗
-║ Owner     : *${config.OWNER_NAME}*
-║ Library   : *Baileys MD*
-║ Type      : *Node.js*
-║ Hosting   : *Heroku*
-║ Mode      : *[ ${config.MODE} ]*
-║ Prefix    : *[ ${config.PREFIX} ]*
-║ Version   : *4.2.0 NEW*
+║ Owner     : ${config.OWNER_NAME}
+║ Library   : Baileys MD
+║ Type      : Node.js
+║ Hosting   : Heroku
+║ Mode      : [ ${config.MODE} ]
+║ Prefix    : [ ${config.PREFIX} ]
+║ Version   : 4.2.0 NEW
 ╚═══════════════╝
 
-╭✧〈 *MAIN MENU* 〉
+╭✧〈 MAIN MENU 〉
 ┃🜸 ping
 ┃🜸 ping2
 ┃🜸 speed
@@ -82,7 +56,7 @@ cmd({
 ┃🜸 restart
 ╰────────────๏
 
-╭✧〈 *DOWNLOAD MENU* 〉
+╭✧〈 DOWNLOAD MENU 〉
 ┃🜸 facebook
 ┃🜸 mediafire
 ┃🜸 tiktok
@@ -109,7 +83,7 @@ cmd({
 ┃🜸 tiks
 ╰────────────๏
 
-╭✧〈 *GROUP MENU* 〉
+╭✧〈 GROUP MENU 〉
 ┃🜸 grouplink
 ┃🜸 kickall
 ┃🜸 kickall2
@@ -146,7 +120,7 @@ cmd({
 ┃🜸 tagadmins
 ╰────────────๏
 
-╭✧〈 *REACTIONS MENU* 〉
+╭✧〈 REACTIONS MENU 〉
 ┃🜸 bully @tag
 ┃🜸 cuddle @tag
 ┃🜸 cry @tag
@@ -175,7 +149,7 @@ cmd({
 ┃🜸 cringe @tag
 ╰────────────๏
 
-╭✧〈 *LOGO MAKER* 〉
+╭✧〈 LOGO MAKER 〉
 ┃🜸 neonlight
 ┃🜸 blackpink
 ┃🜸 dragonball
@@ -209,7 +183,7 @@ cmd({
 ┃🜸 birthday
 ╰────────────๏
 
-╭✧〈 *OWNER MENU* 〉
+╭✧〈 OWNER MENU 〉
 ┃🜸 owner
 ┃🜸 menu
 ┃🜸 vv
@@ -236,7 +210,7 @@ cmd({
 ┃🜸 jid
 ╰────────────๏
 
-╭✧〈 *FUN MENU* 〉
+╭✧〈 FUN MENU 〉
 ┃🜸 shapar
 ┃🜸 rate
 ┃🜸 insult
@@ -262,7 +236,7 @@ cmd({
 ┃🜸 poke
 ╰────────────๏
 
-╭✧〈 *CONVERT MENU* 〉
+╭✧〈 CONVERT MENU 〉
 ┃🜸 sticker
 ┃🜸 emojimix
 ┃🜸 fancy
@@ -283,7 +257,7 @@ cmd({
 ┃🜸 readmore
 ╰────────────๏
 
-╭✧〈 *AI MENU* 〉
+╭✧〈 AI MENU 〉
 ┃🜸 imagine
 ┃🜸 imagine2
 ┃🜸 ai
@@ -291,7 +265,7 @@ cmd({
 ┃🜸 deepseek
 ╰────────────๏
 
-╭✧〈 *ANIME MENU* 〉
+╭✧〈 ANIME MENU 〉
 ┃🜸 animegirl
 ┃🜸 animegirl1
 ┃🜸 animegirl2
@@ -319,7 +293,7 @@ cmd({
 ┃🜸 naruto
 ╰────────────๏
 
-╭✧〈 *OTHER MENU* 〉
+╭✧〈 OTHER MENU 〉
 ┃🜸 timenow
 ┃🜸 date
 ┃🜸 count
@@ -346,34 +320,37 @@ cmd({
 ┃🜸 gpass
 ╰────────────๏
 
-╭✧〈 *WHATSAPP MENU* 〉
+╭✧〈 WHATSAPP MENU 〉
 ┃🜸 channel-id
 ┃🜸 channel-react
 ╰────────────๏
 
 > ${config.DESCRIPTION}`;
 
-            await conn.sendMessage(
-                from,
-                {
-                    image: { url: config.MENU_IMAGE_URL || 'https://qu.ax/bBkkd.jpg' },
-                    caption: dec,
-                    contextInfo: {
-                        mentionedJid: [m.sender],
-                        forwardingScore: 999,
-                        isForwarded: true,
-                        forwardedNewsletterMessageInfo: {
-                            newsletterJid: '120363345872435489@newsletter',
-                            newsletterName: config.BOT_NAME,
-                            serverMessageId: 143
-                        }
-                    }
-                },
-                { quoted: mek }
-            );
 
-        } catch (e) {
-            console.log(e);
-            reply(`❌ Error: ${e}`);
-        }
-    });
+
+await conn.sendMessage(  
+            from,  
+            {  
+                image: { url: config.MENU_IMAGE_URL || 'https://qu.ax/bBkkd.jpg' },  
+                caption: dec,  
+                contextInfo: {  
+                    mentionedJid: [m.sender],  
+                    forwardingScore: 999,  
+                    isForwarded: true,  
+                    forwardedNewsletterMessageInfo: {  
+                        newsletterJid: '120363345872435489@newsletter',  
+                        newsletterName: config.BOT_NAME,  
+                        serverMessageId: 143  
+                    }  
+                }  
+            },  
+            { quoted: mek }  
+        );  
+
+    } catch (e) {  
+        console.log(e);  
+        reply(`❌ Error: ${e}`);  
+    }  
+});
+
