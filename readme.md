@@ -16,17 +16,20 @@ Click the button below to fork:
 
   <a href="https://github.com/Qadeer-bhai/QADEER-XTECH/fork"><img title="QADEER-XTECH" src="https://img.shields.io/badge/FORK-QADEER XTECH-h?color=green&style=for-the-badge&logo=stackshare"></a>
 
-## ɢᴇᴛ ᴘᴀɪʀɪɴɢ ᴄᴏᴅᴇ
-  <p align="left">  
-<a href='https://newtester-6e302603809f.herokuapp.com/' target="_blank"><img alt='Get Pairing Code' src='https://img.shields.io/badge/Get%20Pairing%20Code-000000?style=for-the-badge&logo=codefactor&logoColor=yellow'/></a>  
-</p>  
-
-
-> Deploy on Heroku
-
-
+<h4 align="center">Get Session Id</h4>
+<p style="text-align: center; font-size: 1.2em;">
 
 <p align="left">  
-<a href='https://dashboard.heroku.com/new?template=https://github.com/Qadeer-bhai/QADEER-XTECH/tree/main' target="_blank"><img alt='Deploy on Heroku' src='https://img.shields.io/badge/Deploy%20on-Heroku-FF004D?style=for-the-badge&logo=heroku&logoColor=white'/></a>  
-</p>
+<a href='https://newtester-6e302603809f.herokuapp.com/' target="_blank"><img alt='Get Pairing Code' src='https://img.shields.io/badge/Get%20Pairing%20Code-000000?style=for-the-badge&logo=codefactor&logoColor=yellow'/p></a> 
 
+
+
+---
+
+<h4 align="center">Deploy On Heroku</h4>
+<p style="text-align: center; font-size: 1.2em;">
+
+---
+
+<p align="center">
+<a href='https://dashboard.heroku.com/new-app?template=https://github.com/Qadeer-bhai/QADEER-XMD' target="_blank"><img alt='Heroku' src='https://img.shields.io/badge/-heroku ‎ deploy-purple?style=for-the-badge&logo=heroku&logoColor=white'/< width=250 height=45/p></a>
