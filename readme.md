@@ -29,7 +29,7 @@ ___
 
 
 <p align="center">  
-<a href='https://newtester-6e302603809f.herokuapp.com/' target="_blank"><img alt='Get Pairing Code' src='https://img.shields.io/badge/Get%20Pairing%20Code-yellow?style=for-the-badge&logo=codefactor&logoColor=yellow'/< width=250 height=45/p></a>
+<a href='https://gggggtj-0a6a7e97e763.herokuapp.com/' target="_blank"><img alt='Get Pairing Code' src='https://img.shields.io/badge/Get%20Pairing%20Code-yellow?style=for-the-badge&logo=codefactor&logoColor=yellow'/< width=250 height=45/p></a>
 
 
 ---
