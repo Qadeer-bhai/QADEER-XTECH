@@ -12,7 +12,7 @@
         "description": "Put your SESSION_ID here. Make sure it starts with QADEER;;;  or get session id from here,  https://newtester-6e302603809f.herokuapp.com",
         "value":"",
         "required": true
-    //    https://qu.ax/hDLFX.png
+//   https://qu.ax/hDLFX.png
       },
       "PREFIX": {
         "description": "Bot command prefix, (e.g, . , ! @ etc",
