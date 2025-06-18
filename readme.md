@@ -9,11 +9,13 @@ ___
   </p>
 
 ---
-  
-### 1. Fork This Repo
+ 
 
-Click the button below to fork:
+<h4 align="center">Fork Rep</h4>
+<p style="text-align: center; font-size: 1.2em;">
 
+---
+  <p align="center">
   <a href="https://github.com/Qadeer-bhai/QADEER-XTECH/fork"><img title="QADEER-XTECH" src="https://img.shields.io/badge/FORK-QADEER XTECH-h?color=green&style=for-the-badge&logo=stackshare"></a>
 
 
