@@ -16,7 +16,7 @@ ___
 
 ---
   <p align="center">
-  <a href="https://github.com/Qadeer-bhai/QADEER-XTECH/fork"><img title="QADEER-XTECH" src="https://img.shields.io/badge/FORK-QADEER XTECH-h?color=green&style=for-the-badge&logo=stackshare"></a>
+  <a href="https://github.com/Qadeer-bhai/QADEER-XTECH/fork"><img title="QADEER-XTECH" src="https://img.shields.io/badge/FORK-QADEER XTECH-h?color=green&style=for-the-badge&logo=stackshare"/< width=250 height=45/p></a>
 
 
 ---
