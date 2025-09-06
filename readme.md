@@ -25,7 +25,7 @@
 
 
 <p align="center">  
-<a href='https://fixed-lite-639a5e5ebf8f.herokuapp.com/' target="_blank"><img alt='Get Pairing Code' src='https://img.shields.io/badge/Get%20Pairing%20Code-yellow?style=for-the-badge&logo=codefactor&logoColor=yellow'/< width=250 height=45/p></a>
+<a href='https://base64-lite-55aa246d37d8.herokuapp.com/' target="_blank"><img alt='Get Pairing Code' src='https://img.shields.io/badge/Get%20Pairing%20Code-yellow?style=for-the-badge&logo=codefactor&logoColor=yellow'/< width=250 height=45/p></a>
 
 
 
