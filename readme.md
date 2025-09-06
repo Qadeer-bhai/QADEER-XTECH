@@ -37,7 +37,7 @@
 
 
 <p align="center">
-<a href='https://dashboard.heroku.com/new-app?template=https://github.com/Qadeer-bhai/QADEER-XMD' target="_blank"><img alt='Heroku' src='https://img.shields.io/badge/-heroku ‎ deploy-purple?style=for-the-badge&logo=heroku&logoColor=white'/< width=250 height=45/p></a>
+<a href='https://dashboard.heroku.com/new-app?template=https://github.com/Qadeer-bhai/QADEER-XTECH' target="_blank"><img alt='Heroku' src='https://img.shields.io/badge/-heroku ‎ deploy-purple?style=for-the-badge&logo=heroku&logoColor=white'/< width=250 height=45/p></a>
 
   <div style="height: 10px;"></div>
   
